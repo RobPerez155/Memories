@@ -3,7 +3,11 @@ import bodyParser from 'body-parser' // Parse incoming request bodies in a middl
 import mongoose from 'mongoose'
 import cors from 'cors' // Allows AJAX requests to skip the Same-origin policy and access resources from remote hosts
 
+import postRoutes from './routes/posts.js'
+
 const app = express() // Here we initialize the app first
+
+app.use('/posts', postRoutes)
 
 // Setting up bodyParser so we can properly send a request  
 app.use(bodyParser.json({limit: '30mb', extended: true}))
