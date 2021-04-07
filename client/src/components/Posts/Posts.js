@@ -6,6 +6,8 @@ import useStyles from './styles'
 const Posts = () => {
   const posts = useSelector((state) => state.posts) // Here in (state) we get access to our whole redux store
   const classes = useStyles()
+
+  console.log(posts)
   
   return(
     <>
