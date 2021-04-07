@@ -1,22 +1,29 @@
+// Mods and Libraries
 import React, { useState } from 'react'
 import { TextField, Button, Typography, Paper } from '@material-ui/core'
-import useStyles from './styles'
 import FileBase from 'react-file-base64' // Using this will upload photos as a string
+import { useDispatch } from 'react-redux'
 
-// <Paper> functions like a Div  
+// My created Folders
+import useStyles from './styles'
+import { createPost } from '../../actions/posts'
 
 const Form = () => {
   const [postData, setPostData] = useState({ creator: '', title: '', message:'', tags: '', selectedFile: ''})
   const classes = useStyles()
+  const dispatch = useDispatch()
+  
+  const handleSubmit = (event) => {
+    event.preventDefault() // Stops our browser from refreshing onSubmit
 
-  const handleSubmit = () => {
-
+    dispatch(createPost(postData))
   }
-
+  
   const clear = () => {
-
+    
   }
-
+  
+  // <Paper> functions like a Div  
   return(
     <Paper className={classes.paper}>
       <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>

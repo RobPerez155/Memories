@@ -13,3 +13,12 @@ export const getPosts = () => async (dispatch) => {
     console.log(e.message)
   }
 }
+
+export const createPost = (post) => async (dispatch) => {
+  try {
+    const { data } = await api.createPost(post) //{data} is the destructured data from our response - basically we are making an API request into a Post API request to our backend server
+    dispatch({ type: 'CREATE', payload: data })
+  } catch (e) {
+    console.log(e)
+  }
+}
