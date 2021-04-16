@@ -6,17 +6,24 @@ import { useDispatch } from 'react-redux'
 
 // My created Folders
 import useStyles from './styles'
-import { createPost } from '../../actions/posts'
+import { createPost, updatePost } from '../../actions/posts'
 
-const Form = () => {
+// GET THE CURRENT ID for the post that we are on
+
+const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({ creator: '', title: '', message:'', tags: '', selectedFile: ''})
+  
   const classes = useStyles()
   const dispatch = useDispatch()
   
   const handleSubmit = (event) => {
     event.preventDefault() // Stops our browser from refreshing onSubmit
 
-    dispatch(createPost(postData))
+    if(currentId) { // Checks to see if currentId is not null
+      dispatch(updatePost(currentId, postData))
+    } else {
+      dispatch(createPost(postData))
+    }
   }
   
   const clear = () => {

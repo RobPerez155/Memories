@@ -22,3 +22,13 @@ export const createPost = (post) => async (dispatch) => {
     console.log(e)
   }
 }
+
+export const updatePost = (id, post) => async (dispatch) => {
+  try {
+    const { data } = await api.updatePost(id, post) // { data } - here we destructure our data
+
+    dispatch({ type: 'UPDATE', payload: data })
+  } catch (e) {
+    console.log(e.message)
+  }
+}

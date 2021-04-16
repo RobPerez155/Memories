@@ -14,7 +14,7 @@ import {
 import moment from 'moment'
 import useStyles from "./styles";
 
-const Post = ({ post }) => { // Here we just destructured the properties of the post
+const Post = ({ post, setCurrentId }) => { // Here we just destructured the properties of the post
   const classes = useStyles();
 
   return (
@@ -25,7 +25,10 @@ const Post = ({ post }) => { // Here we just destructured the properties of the 
         <Typography variant='body2'>{moment(post.creatAt).fromNow()}</Typography>
       </div>
       <div className={classes.overlay2}>
-        <Button style={{color: 'white'}} size='small' onClick={() => {}}>
+        <Button 
+          style={{color: 'white'}} 
+          size='small' 
+          onClick={() => setCurrentId(post._id)}>
           <MoreHorizIcon fontSize='default' />
         </Button>
       </div>
@@ -36,7 +39,10 @@ const Post = ({ post }) => { // Here we just destructured the properties of the 
         <Typography className={classes.title} variant='h5' gutterBottom>{ post.message }</Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size='small' color='primary' onClick={() => {}}>
+        <Button 
+          size='small' 
+          color='primary' 
+          onClick={() => {}}>
           <ThumbUpAltIcon fontSize='small' />
             Like
             {post.likeCount}
