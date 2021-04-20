@@ -29,6 +29,6 @@ export const updatePost = (id, post) => async (dispatch) => {
 
     dispatch({ type: 'UPDATE', payload: data })
   } catch (e) {
-    console.log(e.message)
+    console.log(e)
   }
 }

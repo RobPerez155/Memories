@@ -21,7 +21,8 @@ const Form = ({ currentId, setCurrentId }) => {
   }, [post]) // @ [post] <- when our post array is changed our useEffect statement will run
   
   const clear = () => {
-    
+    setCurrentId(null)
+    setPostData({ creator: '', title: '', message:'', tags: '', selectedFile: ''}) // This resets the form fields to being blank
   }
 
   const handleSubmit = (event) => {
@@ -32,14 +33,16 @@ const Form = ({ currentId, setCurrentId }) => {
     } else {
       dispatch(createPost(postData))
     }
+
+    clear()
   }
   
   // <Paper> functions like a Div  
   return(
     <Paper className={classes.paper}>
       <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-        <Typography variant='h6'>Creating a Memory</Typography>
-
+        <Typography variant='h6'>{currentId ? 'Editing' : 'Creating'} a Memory</Typography>
+{/* Ternary states if there is an id than editing will be used instead of creating */}
           <TextField 
           name='creator' 
           variant='outlined' 
@@ -73,7 +76,7 @@ const Form = ({ currentId, setCurrentId }) => {
           label='Tags' 
           fullWidth 
           value={postData.tags} 
-          onChange={(event) => setPostData({ ...postData, tags: event.target.value })} 
+          onChange={(event) => setPostData({ ...postData, tags: event.target.value.split(',') })} 
           /> 
 
           <div className={classes.fileInput}>

@@ -35,8 +35,9 @@ const Post = ({ post, setCurrentId }) => { // Here we just destructured the prop
       <div className={classes.details}>
         <Typography variant='body2' color='textSecondary'>{post.tags.map((tag) => `#${tag} `)}</Typography>
       </div>
+        <Typography className={classes.title} variant='h5' gutterBottom>{ post.title }</Typography>
       <CardContent>
-        <Typography className={classes.title} variant='h5' gutterBottom>{ post.message }</Typography>
+        <Typography variant='body2' color='textSecondary' component='p'>{ post.message }</Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Button 
@@ -44,7 +45,7 @@ const Post = ({ post, setCurrentId }) => { // Here we just destructured the prop
           color='primary' 
           onClick={() => {}}>
           <ThumbUpAltIcon fontSize='small' />
-            Like
+            &nbsp; Like &nbsp;
             {post.likeCount}
         </Button>
         <Button size='small' color='primary' onClick={() => {}}>
