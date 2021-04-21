@@ -6,8 +6,13 @@
   //   return 
   // } // This layout can work, but usually there will be multiple if statements, so to keep clean most people will use a switch statement, like the one below
 
-const reducer = (posts = [], action) => {
+// const reducer = 
+
+export default (posts = [], action) => {
   switch (action.type) {
+
+    case 'DELETE':
+      return posts.filter((post) => post._id !== action.payload)
 
     case 'UPDATE':
       return posts.map((post) => post._id === action.payload._id ? action.payload : post);
@@ -23,4 +28,4 @@ const reducer = (posts = [], action) => {
   }
 }
 
-export default reducer
+// export default reducer

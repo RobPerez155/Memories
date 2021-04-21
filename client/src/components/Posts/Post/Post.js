@@ -10,12 +10,15 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
+import { useDispatch } from 'react-redux'
 
 import moment from 'moment'
 import useStyles from "./styles";
+import { deletePost } from '../../../actions/posts'
 
 const Post = ({ post, setCurrentId }) => { // Here we just destructured the properties of the post
   const classes = useStyles();
+  const dispatch = useDispatch()
 
   return (
     <Card className={classes.card}>
@@ -48,7 +51,7 @@ const Post = ({ post, setCurrentId }) => { // Here we just destructured the prop
             &nbsp; Like &nbsp;
             {post.likeCount}
         </Button>
-        <Button size='small' color='primary' onClick={() => {}}>
+        <Button size='small' color='primary' onClick={() => dispatch(deletePost(post._id))}>
           <DeleteIcon fontSize='small' />
             Delete
         </Button>
