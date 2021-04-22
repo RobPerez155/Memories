@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux'
 
 import moment from 'moment'
 import useStyles from "./styles";
-import { deletePost } from '../../../actions/posts'
+import { deletePost, likePost } from '../../../actions/posts'
 
 const Post = ({ post, setCurrentId }) => { // Here we just destructured the properties of the post
   const classes = useStyles();
@@ -46,7 +46,7 @@ const Post = ({ post, setCurrentId }) => { // Here we just destructured the prop
         <Button 
           size='small' 
           color='primary' 
-          onClick={() => {}}>
+          onClick={() => dispatch(likePost(post._id))}>
           <ThumbUpAltIcon fontSize='small' />
             &nbsp; Like &nbsp;
             {post.likeCount}

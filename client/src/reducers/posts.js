@@ -1,3 +1,4 @@
+
 // a reducer is a function that accepts the 'state' and the 'action'
 // Here we are renaming 'state' to 'posts' because we are in the posts reducer
 
@@ -6,8 +7,7 @@
   //   return 
   // } // This layout can work, but usually there will be multiple if statements, so to keep clean most people will use a switch statement, like the one below
 
-// const reducer = 
-
+// const reducer =
 export default (posts = [], action) => {
   switch (action.type) {
 
@@ -15,6 +15,7 @@ export default (posts = [], action) => {
       return posts.filter((post) => post._id !== action.payload)
 
     case 'UPDATE':
+    case 'LIKE': // Here we are adding another case to the UPDATE case because UPDATE and LIKE return the same result 
       return posts.map((post) => post._id === action.payload._id ? action.payload : post);
 
     case 'FETCH_ALL':
