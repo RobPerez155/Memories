@@ -1,4 +1,4 @@
-
+import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes'
 // a reducer is a function that accepts the 'state' and the 'action'
 // Here we are renaming 'state' to 'posts' because we are in the posts reducer
 
@@ -7,26 +7,22 @@
   //   return 
   // } // This layout can work, but usually there will be multiple if statements, so to keep clean most people will use a switch statement, like the one below
 
-// const reducer =
 export default (posts = [], action) => {
   switch (action.type) {
 
-    case 'DELETE':
+    case DELETE:
       return posts.filter((post) => post._id !== action.payload)
 
-    case 'UPDATE':
-    case 'LIKE': // Here we are adding another case to the UPDATE case because UPDATE and LIKE return the same result 
+    case UPDATE:
       return posts.map((post) => post._id === action.payload._id ? action.payload : post);
 
-    case 'FETCH_ALL':
+    case FETCH_ALL:
       return action.payload;
 
-    case 'CREATE':
+    case CREATE:
       return [...posts, action.payload];
   
     default:
       return posts;
   }
 }
-
-// export default reducer
